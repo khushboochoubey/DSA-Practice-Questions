@@ -1,0 +1,15 @@
+import java.util.*;
+class maketailrecursive{
+    static void printNto1(int n , int k){
+     if (n == 0)
+        return ;
+     System.out.println(k);
+     printNto1(n-1,k+1);
+    
+    }
+public static void main(String[] args) {
+int n = 4;
+int k = 1;
+printNto1(n, k);  
+}
+}
