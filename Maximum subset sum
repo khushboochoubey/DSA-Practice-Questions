@@ -1,0 +1,26 @@
+class Solution {
+    public static long[][] dp = new long[100001][2];
+
+    static long f(int n, int[] A, boolean prev) {
+        if (n == 0) return 0;
+        if (dp[n][prev ? 1 : 0] != -1) return dp[n][prev ? 1 : 0];
+        long take = 0;
+        long not_take = 0;
+        if (!prev) {
+            take = A[n - 1] + f(n - 1, A, true);
+            not_take = Long.MIN_VALUE;
+        } else {
+            take = A[n - 1] + f(n - 1, A, true);
+            not_take = f(n - 1, A, false);
+        }
+        return dp[n][prev ? 1 : 0] = Math.max(take, not_take);
+    }
+
+    public static long findMaxSubsetSum(int N, int[] A) {
+        Arrays.fill(dp[0], 0);
+        for (int i = 1; i <= N; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+        return Math.max(f(N, A, true), f(N, A, false));
+    }
+}    
