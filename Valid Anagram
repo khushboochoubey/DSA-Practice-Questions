@@ -1,0 +1,25 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+ //make two freq arrays for each of the string
+        int freq_arr1[]=new int[26];
+        int freq_arr2[]=new int[26];
+  //itterate over the string and increment the position in freq array
+        for(int i = 0; i<s.length(); i++)
+        {
+            freq_arr1[s.charAt(i)-'a']++;
+        }
+
+        //similar for string t
+        for(int i = 0; i<t.length(); i++)
+        {
+            freq_arr2[t.charAt(i)-'a']++;
+        }
+  //check if frequency of every character is equal or not
+        if(Arrays.equals(freq_arr1,freq_arr2))
+        {
+            return true;
+        }
+        return false;
+        
+    }
+}
