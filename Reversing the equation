@@ -1,0 +1,31 @@
+class Solution {
+    String reverseEqn(String S) {
+        int n = S.length();
+        ArrayDeque<Integer> st = new ArrayDeque<>();
+        ArrayDeque<Character> stk = new ArrayDeque<>();
+        int i = 0;
+
+        while (i < n) {
+            if (S.charAt(i) == '+' || S.charAt(i) == '-' || S.charAt(i) == '*' || S.charAt(i) == '/') {
+                stk.push(S.charAt(i));
+                i++;
+            } else {
+                int num = 0;
+                while (i < n && Character.isDigit(S.charAt(i))) {
+                    num = num * 10 + (S.charAt(i) - '0');
+                    i++;
+                }
+                st.push(num);
+            }
+        }
+         StringBuilder sb=new StringBuilder();
+         while(!st.isEmpty() && !stk.isEmpty()){
+             sb.append(st.pop());
+             sb.append(stk.pop());
+         }
+         if(!st.isEmpty()){
+             sb.append(st.pop());
+         }
+         return sb.toString();
+    }
+}
