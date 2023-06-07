@@ -1,0 +1,57 @@
+class Solution
+
+{
+
+    public int[] leastPrimeFactor(int n)
+
+    {
+
+        int[] leastPrimeFactor = new int[n+1];
+
+        leastPrimeFactor[0] = 0;
+
+        
+
+        for(int idx=1; idx<=n; idx++){
+
+            leastPrimeFactor[idx] = primeFactor(idx);
+
+        }
+
+        
+
+        return leastPrimeFactor;
+
+    }
+
+    
+
+    public int primeFactor(int num)
+
+    {
+
+        if((num&1)==0){
+
+            return 2;
+
+        }
+
+        
+
+        for(int div=3, limit=(int)Math.sqrt(num); div<=limit; div++)
+
+        {
+
+            if(num%div == 0){
+
+                return div;
+
+            }
+
+        }
+
+        return num;
+
+    }
+
+}
