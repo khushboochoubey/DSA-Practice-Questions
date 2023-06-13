@@ -1,0 +1,21 @@
+class Solution {
+    int[] kLargest(int[] arr, int n, int k) {
+       
+       // index variable use in ar
+        int index=0;
+        
+        //create k size array because of k size need element 
+        int ar[]=new int [k];
+        
+        //Sorting Time nlogn
+        Arrays.sort(arr);
+        
+        while(k!=0){
+            ar[index]=arr[n-1];
+            k--;
+            n--;
+            index++;
+        }
+    return ar;
+    }
+}
