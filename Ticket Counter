@@ -1,0 +1,25 @@
+class Solution {
+    public static int distributeTicket(int N,int K)
+    {
+        //from 1 to N search space
+       int start =1;
+       int end = N;
+       
+       while(start<=end)
+       {
+           //if difference between end & start less than K return last number
+           if(end-start < K)
+           return end;
+           
+           //update start add by k & end subtract by k
+           start = start+K;
+           end = end-K;
+           
+           // System.out.println(start + " " + end);   
+       }
+       
+        //return start
+       return start;
+   
+    }
+}
