@@ -1,0 +1,59 @@
+class Sol
+
+{
+
+ public static Node findUnion(Node head1,Node head2)
+
+ {
+
+     //Add your code here.
+
+     Set<Integer> h=new TreeSet<>();
+
+     Node curr=head1;
+
+     while(curr!=null){
+
+         h.add(curr.data);
+
+         curr=curr.next;
+
+     }
+
+     curr=head2;
+
+     while(curr!=null){
+
+         h.add(curr.data);
+
+         curr=curr.next;
+
+     }
+
+     curr=null;
+
+     Node n=null;
+
+     for(int i:h){
+
+         if(curr==null){
+
+             n=new Node(i);
+
+             curr=n;
+
+         }else{
+
+             curr.next=new Node(i);
+
+             curr=curr.next;
+
+         }
+
+     }
+
+     return n;
+
+ }
+
+}
