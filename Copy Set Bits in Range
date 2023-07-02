@@ -1,0 +1,13 @@
+class Solution{
+    static int setSetBit(int x, int y, int l, int r){
+        // code here
+      
+       for(int i=l-1;i<r;i++) 
+       {
+           int BitMask = (y>>i)&1;  
+           x |= BitMask << i;  
+           
+       }
+       return x;
+    }
+}
