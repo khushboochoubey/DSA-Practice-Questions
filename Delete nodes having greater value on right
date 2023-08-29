@@ -1,0 +1,23 @@
+class Solution
+{
+    Node compute(Node head)
+    {
+        Stack<Integer> stack = new Stack<>();
+        Node curr = head;
+        while(curr != null){
+            while(!stack.isEmpty() && stack.peek() < curr.data){
+                stack.pop();
+            }
+            stack.push(curr.data);
+            curr = curr.next;
+        }
+        // System.out.println(stack);
+        Node newhead = null;
+        while(!stack.isEmpty()){
+            Node newnode = new Node(stack.pop());
+            newnode.next = newhead;
+            newhead= newnode;
+        }
+        return newhead;
+    }
+}
