@@ -1,0 +1,22 @@
+//User function Template for Java
+
+class Solution{
+    
+   // Function to check if given number n is a power of two.
+    public static boolean isPowerofTwo(long n){
+        
+        // Your code here
+        if(n ==1){
+            return true;
+        }
+        long res = 1;
+        while(res<n){
+            res*=2;
+            if(res == n){
+                return true;
+            }
+        }
+        return false; 
+    }
+    
+}
