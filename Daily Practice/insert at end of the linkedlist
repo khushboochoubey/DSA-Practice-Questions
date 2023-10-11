@@ -1,0 +1,35 @@
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+class HelloWorld {
+    public static void printList(Node head){
+        Node cur = head;
+        while(cur != null){
+            System.out.print(cur.data + " ");
+            cur = cur.next;
+        }
+    }
+    public static Node insertEnd(Node head , int x){
+        Node temp = new Node(x);
+        if(head == null)
+           return temp;
+        Node cur = head;
+        while(cur.next != null)
+            cur = cur.next;
+        cur.next = temp;
+        return head;
+        
+    }
+    public static void main(String[] args) {
+        Node head = null;
+        head = insertEnd(head , 10);
+        head = insertEnd(head , 20);
+        head = insertEnd(head , 30);
+        printList(head);
+    }
+}
