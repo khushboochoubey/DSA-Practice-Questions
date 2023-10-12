@@ -1,0 +1,50 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+
+class HelloWorld {
+      static Node insertpos(Node head , int pos , int data) {
+        Node temp = new Node(data);
+        if(pos == 1){
+           temp.next=head;
+           return temp;
+        }
+        Node cur = head;
+        for(int i=1;i<=pos-2 && cur != null;i++)
+           cur = cur.next;
+        if(cur == null)
+           return head;
+        temp.next = cur.next;
+        cur.next = temp;
+        return head;
+    }
+  
+static void printLinkedList(Node head) {
+        Node cur = head;
+        while (cur != null) {
+            System.out.print(cur.data + " ");
+            cur = cur.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        
+        Node head = new Node(50);
+        head.next = new Node (40);
+        head.next.next = new Node (30);
+        head.next.next.next = new Node (20);
+        printLinkedList(head);
+        int pos = 3;
+        int data = 25;
+        head = insertpos(head , pos , data);
+        printLinkedList(head);
+       
+    }
+}
