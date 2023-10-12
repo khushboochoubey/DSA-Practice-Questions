@@ -1,0 +1,117 @@
+//iterative
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+
+class HelloWorld {
+      static int searchLL(Node head , int data) {
+        int pos = 1;
+        Node cur = head;
+        while(cur != null){
+            if(cur.data == data)
+               return pos;
+            else{
+                pos++;
+                cur = cur.next;
+            }
+           
+        }
+           
+        return -1;
+    }
+  
+static void printLinkedList(Node head) {
+        Node cur = head;
+        while (cur != null) {
+            System.out.print(cur.data + " ");
+            cur = cur.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        
+        Node head = new Node(50);
+        head.next = new Node (40);
+        head.next.next = new Node (30);
+        head.next.next.next = new Node (20);
+        printLinkedList(head);
+        int data = 30;
+        int pos = searchLL(head ,  data);
+        if (pos != -1) {
+            System.out.println("Data " + data + " found at position " + pos);
+        } else {
+            System.out.println("Data " + data + " not found in the linked list");
+        }
+       
+    }
+}
+
+
+
+
+//recursive
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+
+class HelloWorld {
+      static int searchLLrecursive(Node head , int data) {
+        if(head==null)
+           return -1;
+           
+        if(head.data == data)
+           return 1;
+        else{
+            int res = searchLLrecursive(head.next , data);
+            if(res == -1)
+               return -1;
+            return res+1;
+        }
+    }
+  
+static void printLinkedList(Node head) {
+        Node cur = head;
+        while (cur != null) {
+            System.out.print(cur.data + " ");
+            cur = cur.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        
+        Node head = new Node(50);
+        head.next = new Node (40);
+        head.next.next = new Node (30);
+        head.next.next.next = new Node (20);
+        printLinkedList(head);
+        int data = 40;
+        int pos = searchLLrecursive(head ,  data);
+        if (pos != -1) {
+            System.out.println("Data " + data + " found at position " + pos);
+        } else {
+            System.out.println("Data " + data + " not found in the linked list");
+        }
+       
+    }
+}
