@@ -1,0 +1,41 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+
+class HelloWorld {
+      static Node deleteBegin(Node head) {
+        if( head == null)
+            return null;
+        else
+            return head.next;
+    }
+  
+static void printLinkedList(Node head) {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Node head = new Node(50);
+        head.next = new Node (40);
+        head.next.next = new Node (30);
+        head.next.next.next = new Node (20);
+        printLinkedList(head);
+        head = deleteBegin(head);
+        printLinkedList(head);
+       
+    }
+}
