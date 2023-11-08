@@ -1,0 +1,17 @@
+public class Solution {
+    public static int countDigits(int n){
+        // Write your code here.
+        int cur = n;
+        int ans = 0;
+        while(cur>0){
+            int d0 = cur%10;
+            if(d0 != 0){
+                if(n%d0 == 0)
+                  ans++ ;
+            }
+            cur = cur/10;
+        }
+        return ans;
+        
+    }
+}
