@@ -1,0 +1,15 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        // Base condition
+       int duplicate = x;
+        int re_no = 0;
+        while(x>0){
+            int digit = x % 10;
+            re_no = (re_no*10) + digit;
+            x = x/10;
+        }
+        
+        if(re_no == duplicate) return true;
+        else return false;
+    }
+}
