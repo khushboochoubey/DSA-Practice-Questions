@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+import java.util.List;
+public class Solution {
+    public static List<Long> factorialNumbers(long n) {
+        // Write Your Code Here.
+        ArrayList<Long> al = new ArrayList<Long>();
+        long fact = 1;
+        int i = 1;
+        facNum(n ,al ,fact ,i);
+        return al;
+        
+    }
+
+    public static void facNum(long n ,  ArrayList<Long> al , long fact ,int i){
+        if(fact > n) return;
+        al.add(fact);
+        i++;
+        fact = fact*i;
+        facNum(n ,al ,fact ,i);
+    }
+}
