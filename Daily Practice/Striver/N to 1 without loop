@@ -1,0 +1,28 @@
+public class Solution {
+    public static int[] printNos(int x) {
+        int[] ans = new int[x];
+        helper(ans, x);
+        reverse(ans);
+        return ans;
+    }
+
+    private static void helper(int[] ans, int x) {
+        if (x == 0) {
+            return;
+        }
+        ans[x - 1] = x;
+        helper(ans, x - 1);
+    }
+
+    public static void reverse(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+}
