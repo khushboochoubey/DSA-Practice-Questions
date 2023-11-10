@@ -1,0 +1,16 @@
+public class Solution {
+    public static int[] printNos(int x) {
+        // Write Your Code Here.
+        int[] ans = new int[x];
+        helper(ans, x);
+        return ans;
+    }
+
+    private static void helper(int[] ans, int x) {
+        if (x == 0) {
+            return;
+        }
+        ans[x - 1] = x;
+        helper(ans, x - 1);
+    }
+}
