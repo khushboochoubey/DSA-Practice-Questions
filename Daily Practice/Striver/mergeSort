@@ -1,0 +1,47 @@
+public class Solution {
+
+    public static void mergeSort(int[] arr, int l, int r) {
+        // Write your code here
+        if (l < r) {
+            int m = (l + r) / 2;
+            mergeSort(arr, l, m);
+            mergeSort(arr, m + 1, r);
+            merge(arr, l, r, m);
+        }
+    }
+
+    public static void merge(int[] arr, int l, int r, int mid) {
+        int[] b = new int[r - l + 1];
+        int i = l;
+        int j = mid + 1;
+        int k = 0; // Use 0 as the starting index for the auxiliary array
+
+        while (i <= mid && j <= r) {
+            if (arr[i] < arr[j]) {
+                b[k] = arr[i];
+                i++;
+            } else {
+                b[k] = arr[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i <= mid) {
+            b[k] = arr[i];
+            i++;
+            k++;
+        }
+
+        while (j <= r) {
+            b[k] = arr[j];
+            j++;
+            k++;
+        }
+
+        // Copy elements from the auxiliary array back to the original array
+        for (k = 0; k < r - l + 1; k++) {
+            arr[l + k] = b[k];
+        }
+    }
+}
