@@ -1,0 +1,14 @@
+import java.util.ArrayList;
+
+public class Solution {
+    public static int removeDuplicates(ArrayList<Integer> arr, int n) {
+        int res = 1;
+        for (int i = 1; i < n; i++) {
+            if (!arr.get(i).equals(arr.get(res - 1))) {
+                arr.set(res, arr.get(i));
+                res++;
+            }
+        }
+        return res;
+    }
+}
