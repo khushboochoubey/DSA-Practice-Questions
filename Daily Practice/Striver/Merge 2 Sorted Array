@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class Solution {
+    public static List<Integer> sortedArray(int[] a, int[] b) {
+        int n = a.length;
+        int m = b.length;
+
+        List<Integer> merged = new ArrayList<>(); // Create a list to store the merged result
+
+        int i = 0, j = 0; // Initialize pointers for both arrays
+
+        // Traverse both arrays and merge elements
+        while (i < n && j < m) {
+            if (a[i] < b[j]) {
+                merged.add(a[i]);
+                i++;
+            } else if (a[i] > b[j]) {
+                merged.add(b[j]);
+                j++;
+            } else { // Both elements are equal, add one and move both pointers
+                merged.add(a[i]);
+                i++;
+                j++;
+            }
+        }
+
+        // Copy remaining elements from arr1 (if any)
+        while (i < n) {
+            merged.add(a[i]);
+            i++;
+        }
+
+        // Copy remaining elements from arr2 (if any)
+        while (j < m) {
+            merged.add(b[j]);
+            j++;
+        }
+
+        // Remove duplicates if any
+        for (int k = 0; k < merged.size() - 1; k++) {
+            if (merged.get(k).equals(merged.get(k + 1))) {
+                merged.remove(k);
+                k--; // Adjust index as the list size has changed
+            }
+        }
+
+        return merged;
+    }
+}
