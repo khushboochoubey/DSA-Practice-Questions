@@ -1,0 +1,25 @@
+public class Solution {
+    public static int majorityElement(int []v) {
+        // Write your code here
+         int count=1;
+         int ele=v[0];
+         for(int i=0;i<v.length;i++){
+        
+        if(v[i]==ele){
+            count++;
+        }
+    
+        else{
+            count--;
+        }
+    
+
+        if(count==0){
+            ele=v[i];
+            count=1;
+        }
+
+    }
+    return ele;
+    }
+}
