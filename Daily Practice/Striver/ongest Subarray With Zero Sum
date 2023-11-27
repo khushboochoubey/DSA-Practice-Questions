@@ -1,0 +1,70 @@
+//bruteforce
+public class Solution {
+    public static int getLongestZeroSumSubarrayLength(int []arr){
+        // Write your code here.
+        int length = 0;
+        for(int i = 0 ; i < arr.length - 1; i++){
+            int sum = arr[i] , currentlength = 1;
+            if(sum == 0)
+                length = Math.max(length , currentlength);
+            for(int j = i+1 ; j <arr.length ; j++){
+                sum += arr[j] ;
+                currentlength++ ;
+                if(sum == 0)
+                   length = Math.max(length , currentlength);
+
+            }
+        }
+        return length;
+    }
+}
+
+
+//optimal - https://youtu.be/d9xU9OUHt8I?si=QX2JsTGRkSytyd5H
+
+
+import java.util.*;
+
+public class Solution {
+
+    public static int getLongestZeroSumSubarrayLength(int []arr){
+
+        // Write your code here.
+
+        HashMap<Integer, Integer> mpp = new HashMap<>();
+
+        int maxi=0;
+
+        int sum=0;
+
+        int n=arr.length;
+
+        for(int i=0; i<n; i++){
+
+            sum=sum+arr[i];
+
+            if(sum==0) maxi=i+1;
+
+            else{
+
+                if(mpp.get(sum)!=null){
+
+                    maxi=Math.max(maxi,i-mpp.get(sum));
+
+                }
+
+                else{
+
+                    mpp.put(sum,i);
+
+                }
+
+            }
+
+        }
+
+        return maxi;
+
+    }
+
+}
