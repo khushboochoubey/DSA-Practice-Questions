@@ -1,0 +1,15 @@
+public class Solution {
+    public static int subarraysWithSumK(int []a, int b) {
+        // Write your code here
+        int cnt = 0;
+        for(int i = 0 ; i < a.length ; i++){
+            int xr = a[i];
+            if(xr == b) cnt++ ;
+            for(int j = i+1 ; j < a.length ; j++){
+                xr ^= a[j];
+                if(xr == b) cnt++ ;
+            }
+        }
+        return cnt;
+    }
+}
