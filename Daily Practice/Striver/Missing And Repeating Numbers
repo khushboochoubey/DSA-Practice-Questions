@@ -1,24 +1,30 @@
+import java.util.Arrays;
+
 public class Solution {
     public static int[] findMissingRepeatingNumbers(int[] a) {
         int[] ans = new int[2];
         int len = a.length;
 
+        if (len <= 1) {
+            return ans; // If the array is too small, return the default [0, 0]
+        }
+
+        Arrays.sort(a); // Sort the array for easy comparison
+
         // Finding the repeating number
-        for (int i = 0; i < len; i++) {
-            for (int j = i + 1; j < len; j++) {
-                if (a[i] == a[j]) {
-                    ans[0] = a[i];
-                    break; // Exit loop if a repeating number is found
-                }
+        for (int i = 0; i < len - 1; i++) {
+            if (a[i] == a[i + 1]) {
+                ans[0] = a[i];
+                break; // Exit loop if a repeating number is found
             }
         }
 
-        // Finding the missing number and summing array elements
+        // Finding the missing number
         int expectedSum = len * (len + 1) / 2; // Sum of first len natural numbers
         int actualSum = 0;
 
-        for (int i = 0; i < len; i++) {
-            actualSum += a[i];
+        for (int num : a) {
+            actualSum += num;
         }
 
         int missing = expectedSum - actualSum + ans[0]; // Adding the repeating number to the missing calculation
