@@ -1,0 +1,11 @@
+public class Solution
+{
+    public static Node insertAtFirst(Node list, int newValue) {
+        // Write your code here
+        Node l = new Node(newValue);
+        l.next = list;
+
+        return l;
+
+    }
+}
