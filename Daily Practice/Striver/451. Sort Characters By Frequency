@@ -1,0 +1,30 @@
+class Solution {
+    public String frequencySort(String s) {
+        // Ek HashMap banaya jata hai, jisme characters aur unke counts store hote hain
+        HashMap<Character,Integer> map= new HashMap<>();
+
+        // String ke har character ki frequency count ki jati hai
+        for(int i=0;i<s.length();i++){
+            char c= s.charAt(i);
+            if(map.containsKey(c)) 
+                map.put(c, map.get(c)+1); // Agar character map mein hai, toh uski count badhaya jata hai
+            else 
+                map.put(c,1); // Nahi toh nayi entry banai jati hai
+        }
+
+        // Map ke keys ko frequency ke hisaab se sort karte hain
+        List<Character> sorted= new ArrayList<>(map.keySet());
+        Collections.sort(sorted, (a,b) -> map.get(b)-map.get(a)); // Comparator istemal kiya jata hai jo characters ko frequency ke hisaab se sort karta hai
+
+        // Sorted characters se naya string tayaar kiya jata hai, jisme har character uski frequency ke hisaab se repeat hota hai
+        String t="";
+        for(int i=0;i<sorted.size();i++){
+            char d= sorted.get(i);
+            for(int j=0; j<map.get(d);j++){
+                t+=d;
+            }
+        }
+        
+        return t; // Sort kiya hua string return kiya jata hai
+    }
+}
