@@ -1,0 +1,17 @@
+public class Solution {
+    public static Node deleteLastNode(Node head) {
+        // Write your code here.
+        if (head == null || head.next == null) {
+            return null; // If the list is empty or has only one node, there's nothing to delete
+        }
+
+        Node cur = head;
+        while (cur.next.next != null) {
+            cur = cur.next;
+        }
+
+        cur.next = null; // Set the second last node's next to null to remove the last node
+
+        return head;
+    }
+}
