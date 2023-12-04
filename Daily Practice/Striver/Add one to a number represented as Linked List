@@ -1,0 +1,29 @@
+public class Solution {
+
+    public static Node addNode(Node head) {
+
+        // Write your code here.
+
+        if(head == null) return head;
+
+        if(head.next == null) return new Node(head.data+1);
+
+        Node curr = head;
+
+        while(curr != null){
+
+            curr = curr.next;
+
+        }
+
+ 
+
+        curr.data = curr.data+1;
+
+ 
+
+        return head;
+
+    }
+
+}
