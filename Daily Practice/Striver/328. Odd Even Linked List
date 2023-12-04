@@ -1,0 +1,32 @@
+import java.util.ArrayList;
+
+public class Solution {
+    public static Node segregateEvenOdd(Node head) {
+        Node curr = head;
+        ArrayList<Integer> odd = new ArrayList<>(), even = new ArrayList<>();
+
+        while (curr != null) {
+            if (curr.data % 2 == 0)
+                even.add(curr.data);
+            else
+                odd.add(curr.data);
+
+            curr = curr.next;
+        }
+
+        Node dummy = new Node(0);
+        Node temp = dummy;
+
+        for (int num : even) {
+            temp.next = new Node(num);
+            temp = temp.next;
+        }
+
+        for (int num : odd) {
+            temp.next = new Node(num);
+            temp = temp.next;
+        }
+
+        return dummy.next;
+    }
+}
