@@ -1,0 +1,12 @@
+public class Solution {
+    public static int length(Node head){
+        //Your code goes here
+        int cnt = 0;
+        Node cur = head;
+        while(cur != null){
+            cur = cur.next;
+            cnt++ ;
+        }
+        return cnt;
+    }
+}
