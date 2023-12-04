@@ -1,0 +1,26 @@
+//delete end
+public class Solution {
+    public static Node deleteLast(Node list){
+        // Write your code here.
+        if(list == null || list.next == null) {
+            return null; // If the list is empty or has only one node, there's nothing to delete
+        }
+
+        Node cur = list;
+        while(cur.next.next != null){
+            cur = cur.next;
+        }
+        
+        cur.next = null; // Set the second last node's next to null to remove the last node
+        
+        return list;
+    }
+}
+
+//dlt at given pos
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+}
