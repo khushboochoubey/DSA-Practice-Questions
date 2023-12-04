@@ -1,0 +1,18 @@
+public class Solution {
+    public static Node insertAtTail(Node list, int K) {
+        // Write your code here.
+        Node temp = new Node(K);
+        if (list == null) {
+            return temp; // If the list is empty, the new node becomes the list itself
+        }
+
+        Node cur = list;
+        while (cur.next != null) {
+            cur = cur.next;
+        }
+        cur.next = temp; // Link the new node at the end
+        temp.prev = cur; // Set the previous reference for the new node
+
+        return list; // Return the updated list
+    }
+}
