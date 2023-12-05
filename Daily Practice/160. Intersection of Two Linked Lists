@@ -1,0 +1,39 @@
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // Find lengths of both lists
+        int lengthA = length(headA);
+        int lengthB = length(headB);
+
+        // Move the pointer of the longer list ahead by the difference in lengths
+        while (lengthA > lengthB) {
+            headA = headA.next;
+            lengthA--;
+        }
+
+        while (lengthB > lengthA) {
+            headB = headB.next;
+            lengthB--;
+        }
+
+        // Move both pointers until they intersect or reach the end
+        while (headA != null && headB != null) {
+            if (headA == headB) {
+                return headA; // Intersection found
+            }
+            headA = headA.next;
+            headB = headB.next;
+        }
+
+        return null; // No intersection found
+    }
+
+    // Helper function to calculate length of a linked list
+    public static int length(ListNode node) {
+        int length = 0;
+        while (node != null) {
+            length++;
+            node = node.next;
+        }
+        return length;
+    }
+}
