@@ -1,0 +1,33 @@
+public class Solution {
+    
+  public static int countSetBits(int n) {
+
+        int totalcount = 0;
+
+        for (int i = 0; i <= n; i++) {
+
+            totalcount += countSet(i);
+
+        }
+
+        return totalcount;
+
+    }
+
+    public static int countSet(int num) {
+
+        int count = 0;
+
+        while (num > 0) {
+
+            count += num & 1; 
+
+             num >>= 1; 
+
+        }
+
+        return count;
+
+    }
+
+}
