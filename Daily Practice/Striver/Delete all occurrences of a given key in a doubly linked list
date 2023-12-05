@@ -1,0 +1,18 @@
+public class Solution {
+    public static Node deleteAllOccurrences(Node head, int k) {
+        // Handling case where the initial nodes have the value to be deleted
+        while (head != null && head.data == k) {
+            head = head.next;
+        }
+
+        Node current = head;
+        while (current != null && current.next != null) {
+            if (current.next.data == k) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+        return head;
+    }
+}
