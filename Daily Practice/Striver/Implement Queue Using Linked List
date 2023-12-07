@@ -1,0 +1,50 @@
+public class Solution extends Queue{    
+    Node head=null;    
+    Node temp=null;    
+      public void push(int x) {       
+
+       // Write Your Code Here
+
+        Node newNode=new Node(x);
+
+        if(head == null){
+
+            head=temp=newNode;
+
+            return;
+
+        }
+
+        temp.next=newNode;
+
+        temp=newNode;
+
+    }
+
+        public int pop() {
+
+        // Write Your Code Here
+
+        if(head == null){
+
+            return -1;
+
+        }
+
+        int front=head.data;
+
+        if(temp == head){ 
+
+           temp=head=null;
+
+        }else{
+
+            head=head.next;
+
+        }
+
+        return front;
+
+    }
+
+ }
