@@ -1,0 +1,39 @@
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] ans = new int[n];
+        
+        for (int i = 0; i < n; i++) {
+            ans[i] = -1; // Initialize with -1, indicating no greater element found by default
+            
+            for (int j = i + 1; j < i + n; j++) {
+                if (nums[j % n] > nums[i]) {
+                    ans[i] = nums[j % n]; // Found next greater element
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        Stack<Integer> s = new Stack<>();
+        int[] arr = new int[n];
+        for(int i = 2 * n - 1; i >= 0 ; i--){
+            while(!s.isEmpty() && s.peek() <= nums[i % n]){
+                s.pop();
+            }
+            if(s.isEmpty()){
+                arr[i % n] = -1;
+            }
+            else{
+                arr[i % n] = s.peek();
+            }
+            s.push(nums[i % n]);
+        }
+        return arr;
+    }
+}
