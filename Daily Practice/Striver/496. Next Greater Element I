@@ -1,0 +1,26 @@
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+
+        int[] ans = new int[len1];
+        
+        for(int i = 0 ; i < len1 ; i++) {
+            ans[i] = -1; // Initialize with -1, indicating no greater element found by default
+            
+            for(int j = 0 ; j < len2 ; j++) {
+                if(nums1[i] == nums2[j]) {
+                    // Finding the next greater element in nums2 for nums1[i]
+                    for(int k = j + 1 ; k < len2 ; k++) {
+                        if(nums2[k] > nums1[i]) {
+                            ans[i] = nums2[k]; // Found next greater element
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+}
