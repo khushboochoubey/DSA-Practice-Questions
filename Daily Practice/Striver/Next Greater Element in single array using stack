@@ -1,0 +1,53 @@
+import java.util.*;
+
+ 
+
+public class Solution {
+
+    public static int[] nextGreaterElement(int[] arr, int n) {
+
+        Stack<Integer> s = new Stack<>();  
+
+        
+
+        int nextGre[] = new int[n];  // Create an array to store the next greater elements
+
+        
+
+        // Traverse the input array in reverse order
+
+        for (int i = n - 1; i >= 0; i--) {
+
+            // Remove elements from the stack that are smaller than or equal to the current element
+
+            while (!s.isEmpty() && s.peek() <= arr[i]) {
+
+                s.pop();
+
+            }
+
+            
+
+            if (s.isEmpty()) {
+
+                nextGre[i] = -1;  // If no greater element is found, store -1 in the result array
+
+            } else {
+
+                nextGre[i] = s.peek();  // Store the top element of the stack as the next greater element
+
+            }
+
+            
+
+            s.push(arr[i]);  // Push the current element onto the stack
+
+        }
+
+        
+
+        return nextGre;  // Return the array containing the next greater elements
+
+    }
+
+}
