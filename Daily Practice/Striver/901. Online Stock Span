@@ -1,0 +1,32 @@
+class StockSpanner {
+    Stack<Integer> prices;
+    Stack<Integer> spans;
+
+    public StockSpanner() {
+        prices = new Stack<>();
+        spans = new Stack<>();
+    }
+
+    public int next(int price) {
+        int span = 1;
+
+        // Check previous days' prices which are less than or equal to today's price
+        while (!prices.isEmpty() && price >= prices.peek()) {
+            prices.pop();
+            span += spans.pop();
+        }
+
+        // Store today's price and its span
+        prices.push(price);
+        spans.push(span);
+
+        return span;
+    }
+}
+
+
+/**
+ * Your StockSpanner object will be instantiated and called as such:
+ * StockSpanner obj = new StockSpanner();
+ * int param_1 = obj.next(price);
+ */
