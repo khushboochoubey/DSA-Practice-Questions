@@ -1,0 +1,40 @@
+class Solution {
+    public int[] findIntersectionValues(int[] nums1, int[] nums2) {
+        int n = nums1.length;
+        int m = nums2.length;
+        
+        int[] count1 = new int[n];
+        int[] count2 = new int[m];
+        
+        int[] answer = new int[2];
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (nums1[i] == nums2[j]) {
+                    count1[i]++;
+                    count2[j]++;
+                }
+            }
+        }
+        
+        int occurrence1 = 0;
+        int occurrence2 = 0;
+        
+        for (int i = 0; i < n; i++) {
+            if (count1[i] > 0) {
+                occurrence1++;
+            }
+        }
+        
+        for (int j = 0; j < m; j++) {
+            if (count2[j] > 0) {
+                occurrence2++;
+            }
+        }
+        
+        answer[0] = occurrence1;
+        answer[1] = occurrence2;
+        
+        return answer;
+    }
+}
