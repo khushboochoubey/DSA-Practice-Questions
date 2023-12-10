@@ -1,0 +1,36 @@
+class Solution {
+    public List<Integer> getGoodIndices(int[][] variables, int target) {
+        List<Integer> ans = new ArrayList<>();
+        int n = variables.length;
+        for (int i = 0; i < n; i++) {
+            int[] currentRow = variables[i];
+            if (currentRow.length != 4) {
+                continue; // Skip rows that don't have exactly four elements
+            }
+            int ai = currentRow[0];
+            int bi = currentRow[1];
+            int ci = currentRow[2];
+            int mi = currentRow[3];
+
+            int t = powMod(ai, bisS, 10); // Calculate (aibi % 10)
+            int mod = powMod(t, ci, mi); // Compute ((aibi % 10)ci) % mi
+
+            if (mod == target) {
+                ans.add(i);
+            }
+        }
+        return ans;
+    }
+    private int powMod(int base, int exponent, int mod) {s
+        int result = 1;
+        base %= mod;
+        while (exponent > 0) {
+            if (exponent % 2 == 1) {
+                result = (result * base) % mod;
+            }
+            base = (base * base) % mod;
+            exponent /= 2;
+        }
+        return result;
+    }
+}
