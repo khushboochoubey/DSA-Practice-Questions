@@ -1,0 +1,25 @@
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int[] count = new int[26]; // To store the count of characters
+        int maxFreq = 0; // To keep track of the maximum frequency of a character
+        int maxLength = 0; // To store the maximum length of the substring
+
+        int start = 0; // Start of the window
+
+        for (int end = 0; end < s.length(); end++) {
+            char ch = s.charAt(end);
+            count[ch - 'A']++; // Increment the count for the current character
+            maxFreq = Math.max(maxFreq, count[ch - 'A']); // Update the maximum frequency
+
+            // Check if the window size - max frequency > k
+            if (end - start + 1 - maxFreq > k) {
+                count[s.charAt(start) - 'A']--; // Decrement the count for the character at start
+                start++; // Move the start of the window forward
+            }
+
+            maxLength = Math.max(maxLength, end - start + 1); // Update maxLength
+        }
+
+        return maxLength;
+    }
+}
