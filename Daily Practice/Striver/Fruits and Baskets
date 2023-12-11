@@ -1,0 +1,33 @@
+import java.util.*;
+public class Solution {
+    public static int findMaxFruits(int[] arr, int n) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int l = 0, total = 0, ans = 0;
+
+        for (int r = 0; r < n; r++) {
+            int fruit = arr[r];
+
+            if (map.containsKey(fruit)) {
+                map.put(fruit, map.get(fruit) + 1);
+            } else {
+                map.put(fruit, 1);
+            }
+
+            total++;
+
+            while (map.size() > 2) {
+                int remFruit = arr[l++];
+                map.put(remFruit, map.get(remFruit)-1);
+                total--;
+
+                if (map.get(remFruit) == 0) {
+                    map.remove(remFruit);
+                }
+            }
+
+            ans = Math.max(ans, total);
+        }
+
+        return ans;
+    }
+}
