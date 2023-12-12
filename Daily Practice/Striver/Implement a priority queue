@@ -1,0 +1,37 @@
+import java.util.List;
+
+public class Solution {
+    public static int pop(List<Integer> heap) {
+        if (heap.size() < 1) {
+            return -1; // Return -1 if the heap is empty
+        }
+        
+        int lastindex = heap.size() - 1;
+        int largest = heap.get(0); // Store the largest element (root)
+        heap.set(0, heap.get(lastindex)); // Replace root with the last element
+        heap.remove(lastindex); // Remove the last element
+        --lastindex; // Decrease the index of the last element
+
+        int pi = 0; // Parent index
+
+        while (true) {
+            int ci = pi * 2 + 1; // Calculate the left child index
+            if (ci > lastindex) {
+                break; // Break if the current index exceeds the last index
+            }
+            int rc = ci + 1; // Calculate the right child index
+            if (rc <= lastindex && heap.get(rc) > heap.get(ci)) {
+                ci = rc; // If right child is larger, update current index to right child
+            }
+            if (heap.get(pi) >= heap.get(ci)) {
+                break; // Break if the heap property is satisfied
+            }
+            // Swap the elements at parent and current index to maintain the heap property
+            int temp = heap.get(pi);
+            heap.set(pi, heap.get(ci));
+            heap.set(ci, temp);
+            pi = ci; // Update parent index for next iteration
+        }
+        return largest; // Return the originally removed largest element
+    }
+}
