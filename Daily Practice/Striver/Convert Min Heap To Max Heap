@@ -1,0 +1,39 @@
+public class Solution {
+
+    public static void heapify(int arr[] , int i) {
+        int idx = i; // Assigning the input index 'i' to 'idx'
+        int n = arr.length; // Storing the length of the array 'arr'
+        int parent = idx; // Initializing 'parent' to 'idx'
+        int left = 2*i + 1; // Calculating the index of the left child
+        int right = 2*i + 2; // Calculating the index of the right child
+
+        if(left < n && arr[left] > arr[parent]) // Checking if left child is greater than parent
+            parent = left; // Updating 'parent' to left child index if true
+
+        if(right < n && arr[right] > arr[parent]) // Checking if right child is greater than parent (updated)
+            parent = right; // Updating 'parent' to right child index if true
+
+        if(parent != idx) { // If 'parent' is different from the initial index 'idx'
+            int temp = arr[idx]; // Swapping elements at 'idx' and 'parent'
+            arr[idx] = arr[parent];
+            arr[parent] = temp;
+            heapify(arr, parent); // Recursively heapify the affected subtree
+        }
+    }
+
+    public static int[] MinToMaxHeap(int n, int[] arr) {
+        int p = (n / 2) - 1; // Calculating the starting index for heapifying
+
+        for(int i = p; i >= 0; i--) { // Loop from the last non-leaf node to the root
+            heapify(arr, i); // Heapify each subtree
+        }
+
+        int ans[] = new int[n]; // Creating a new array 'ans' to store the result
+
+        for(int i = 0; i < n; i++) { // Copying elements to 'ans'
+            ans[i] = arr[i];
+        }
+
+        return ans; // Returning the resultant array
+    }
+}
