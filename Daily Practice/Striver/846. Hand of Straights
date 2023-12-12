@@ -1,0 +1,46 @@
+class Solution {
+    public boolean isNStraightHand(int[] hand, int W) {
+        if(hand.length % W != 0) return false;
+
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for(int elem: hand) minHeap.add(elem);
+
+        while(!minHeap.isEmpty()){
+            int head = minHeap.poll();
+            for(int i=1; i<W; i++)
+                if(!minHeap.contains(head+i)){
+                   return false;
+                } else{
+                    minHeap.remove(head+i);
+                }
+        }
+        return true;
+    }
+}
+
+
+//  class Solution {
+//     public boolean isNStraightHand(int[] hand, int groupSize) {
+//         if(hand.length % groupSize != 0){
+//             return false;
+//         }
+//         else{
+//             PriorityQueue<Integer> pq = new PriorityQueue<>();
+//             for(int p : hand){
+//                 pq.offer(p);
+//             }
+//             while(!pq.isEmpty()){
+//                 int ele = pq.peek();
+//                 for(int i = 0;i<groupSize;i++){
+//                     if(!pq.contains(ele+i)){
+//                         return false;
+//                     }
+//                     else{
+//                         pq.remove(ele+i);
+//                     }
+//                 }
+//             }
+//         }
+//         return true;
+//     }
+// }
