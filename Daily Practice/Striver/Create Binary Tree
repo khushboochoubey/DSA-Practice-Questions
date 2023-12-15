@@ -1,0 +1,29 @@
+public class Solution {
+
+public static Node createTree(int []arr){
+
+// Write your code here.
+
+return create(arr,0);
+
+}
+
+private static Node create(int []arr,int i){
+
+if(i>=arr.length){
+
+return null;
+
+}
+
+Node n = new Node(arr[i]);
+
+n.left = create(arr,2*i+1);
+
+n.right = create(arr,2*i+2);
+
+return n;
+
+}
+
+}
