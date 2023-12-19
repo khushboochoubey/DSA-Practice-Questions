@@ -1,0 +1,71 @@
+/*********************************************************
+
+ Following is the TreeNode structure:
+
+ class TreeNode {
+     int data;
+     TreeNode left;
+     TreeNode right;
+     TreeNode() {
+         this.data = 0;
+         this.left = null;
+         this.right = null;
+     }
+     TreeNode(int data) {
+         this.data = data;
+         this.left = null;
+         this.right = null;
+     }
+     TreeNode(int data, TreeNode left, TreeNode right) {
+         this.data = data;
+         this.left = left;
+         this.right = right;
+     }
+ };
+ ********************************************************/
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+    static TreeNode pre = null;
+    static TreeNode suc = null;
+
+    public static List<Integer> predecessorSuccessor(TreeNode root, int key) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return result;
+
+        findPreSuc(root, key);
+
+        if (pre != null) result.add(pre.data);
+        else result.add(-1);
+
+        if (suc != null) result.add(suc.data);
+        else result.add(-1);
+
+        return result;
+    }
+
+    private static void findPreSuc(TreeNode root, int key) {
+        if (root == null) return;
+
+        if (root.data == key) {
+            if (root.left != null) {
+                pre = root.left;
+                while (pre.right != null)
+                    pre = pre.right;
+            }
+            if (root.right != null) {
+                suc = root.right;
+                while (suc.left != null)
+                    suc = suc.left;
+            }
+        } else if (root.data > key) {
+            suc = root;
+            findPreSuc(root.left, key);
+        } else {
+            pre = root;
+            findPreSuc(root.right, key);
+        }
+    }
+}
