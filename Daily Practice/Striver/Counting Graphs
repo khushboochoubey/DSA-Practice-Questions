@@ -1,0 +1,13 @@
+public class Solution {
+
+    public static int countingGraphs(int N) {
+
+        double pow=N*(N-1)/2;
+
+        double cnt=Math.pow(2, pow);
+
+        return (int)cnt;
+
+    }
+
+}
