@@ -1,0 +1,68 @@
+import java.util.*;
+
+public class Solution {
+
+    
+
+    static class Graph {
+
+        boolean detectCycle(int V, List<List<Integer>> adj) {
+
+           boolean vis[] = new boolean[V];
+
+            for (int i = 0; i < V; i++) { // Fix the loop to start from 0
+
+                if (!vis[i]) {
+
+                    if (dfs(i, -1, adj, vis)) {
+
+                        return true;
+
+                    }
+
+                }
+
+            }
+
+        return false;
+
+        }
+
+
+ 
+
+         boolean dfs(int node, int parent, List<List<Integer>> adj, boolean vis[]) {
+
+            vis[node] = true;
+
+
+ 
+
+            for (Integer it : adj.get(node)) {
+
+                if (!vis[it]) {
+
+                    if (dfs(it, node, adj, vis)) {
+
+                        return true;
+
+                    }
+
+                } else if (it != parent) {
+
+                    return true;
+
+                }
+
+            }
+
+            return false;
+
+        }
+
+
+ 
+
+    };
+
+}
