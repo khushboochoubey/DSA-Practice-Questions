@@ -1,0 +1,47 @@
+class Solution {
+    public int[][] updateMatrix(int[][] mat) {
+        if (mat == null || mat.length == 0 || mat[0].length == 0)
+            return new int[0][0];
+
+        int m = mat.length, n = mat[0].length;
+        // visited and distance matrix
+        int vis[][] = new int[m][n];
+        int dist[][] = new int[m][n];
+        Queue<int[]> q = new LinkedList<>();
+
+        // traverse the matrix
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                // start BFS if cell contains 0
+                if (mat[i][j] == 0) {
+                    q.offer(new int[]{i, j, 0});
+                    vis[i][j] = 1; // mark as visited
+                }
+            }
+        }
+
+        int directionrow[] = {-1, 0, +1, 0};
+        int directioncol[] = {0, +1, 0, -1};
+
+        while (!q.isEmpty()) {
+            int[] cell = q.poll();
+            int row = cell[0];
+            int col = cell[1];
+            int steps = cell[2];
+            dist[row][col] = steps;
+
+            // Check all 4 neighbors
+            for (int i = 0; i < 4; i++) {
+                int nrow = row + directionrow[i];
+                int ncol = col + directioncol[i];
+                // check for valid unvisited cell
+                if (nrow >= 0 && nrow < m && ncol >= 0 && ncol < n && vis[nrow][ncol] == 0) {
+                    vis[nrow][ncol] = 1;
+                    q.offer(new int[]{nrow, ncol, steps + 1});
+                }
+            }
+        }
+
+        return dist;
+    }
+}
