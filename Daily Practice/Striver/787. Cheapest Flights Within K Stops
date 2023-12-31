@@ -1,0 +1,78 @@
+class Solution {
+    // Define a nested class `Pair` to store two integers
+    class Pair {
+        int first;
+        int second;
+
+        // Constructor for Pair class
+        public Pair(int first, int second) {
+            this.first = first;
+            this.second = second;
+        }
+    }
+
+    // Define a nested class `Tuple` to store three integers
+    class Tuple {
+        int first, second, third;
+
+        // Constructor for Tuple class
+        Tuple(int first, int second, int third) {
+            this.first = first;
+            this.second = second;
+            this.third = third;
+        }
+    }
+
+    // Main function to find the cheapest price from src to dst with at most k stops
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+        // Create an adjacency list to represent the graph (flight connections between cities)
+        ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList<>());
+        }
+        
+        // Construct the adjacency list by adding flights between cities
+        int m = flights.length;
+        for (int i = 0; i < m; i++) {
+            adj.get(flights[i][0]).add(new Pair(flights[i][1], flights[i][2]));
+        }
+
+        // Create a queue to perform BFS for finding the shortest path with at most k stops
+        Queue<Tuple> q = new LinkedList<>();
+        q.add(new Tuple(0, src, 0)); // Start from src with 0 stops and 0 cost
+
+        // Initialize the distances array to store the minimum cost from src to each city
+        int[] dist = new int[n];
+        for (int i = 0; i < n; i++) {
+            dist[i] = (int) (1e9); // Set initial distances to a large value (infinity)
+        }
+        dist[src] = 0; // The cost from src to itself is 0
+
+        // Perform BFS traversal to find the minimum cost path with at most k stops
+        while (!q.isEmpty()) {
+            Tuple it = q.peek();
+            q.remove();
+            int stops = it.first;
+            int node = it.second;
+            int cost = it.third;
+
+            if (stops > k) continue; // Skip if stops exceed the limit
+
+            // Iterate through the adjacent nodes (flights) of the current city
+            for (Pair iter : adj.get(node)) {
+                int adjNode = iter.first; // Get the adjacent city
+                int edW = iter.second; // Get the cost (weight) of the flight
+
+                // Update the distance if a shorter path is found within the stop limit
+                if (cost + edW < dist[adjNode] && stops <= k) {
+                    dist[adjNode] = cost + edW;
+                    q.add(new Tuple(stops + 1, adjNode, cost + edW)); // Add to queue for further exploration
+                }
+            }
+        }
+
+        // If the destination is unreachable, return -1, otherwise return the minimum cost to reach dst
+        if (dist[dst] == (int) (1e9)) return -1;
+        return dist[dst];
+    }
+}
