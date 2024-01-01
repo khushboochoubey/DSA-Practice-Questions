@@ -1,0 +1,26 @@
+class Solve {
+    int[] findTwoElement(int arr[], int n) {
+        int[] ans = new int[2];
+        int[] count = new int[n + 1]; // Increase the size to accommodate numbers from 1 to n
+        
+        for (int i = 0; i < arr.length; i++) {
+            count[arr[i]]++; // Increment count for each element in the input array
+        }
+        
+        int duplicate = 0;
+        int missing = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            if (count[i] == 2) {
+                duplicate = i; // Store the value of the duplicate element
+            } else if (count[i] == 0) {
+                missing = i; // Store the value of the missing element
+            }
+        }
+        
+        ans[0] = duplicate;
+        ans[1] = missing;
+        
+        return ans;
+    }
+}
