@@ -1,0 +1,56 @@
+class Solution {
+    static int countWays(int n, String s) {
+        return solve(s.toCharArray(), 0, n - 1, 1, new HashMap<>());
+    }
+
+    private static int solve(char[] s, int i, int j, int isTrue, Map<String, Integer> map) {
+
+        
+        if (i > j) return 0;
+        if (i == j) {
+            if (isTrue == 1) return s[i] == 'T' ? 1 : 0;
+            else return s[i] == 'F' ? 1 : 0;
+        }
+
+        String key = i + "-" + j + "-" + isTrue;
+
+        int res = map.getOrDefault(key, -1);
+        if (res != -1) return res;
+
+        long ways = 0;
+
+        for (int k = i + 1; k <= j - 1; k += 2) {
+            int lT = solve(s, i, k - 1, 1, map);
+            int lF = solve(s, i, k - 1, 0, map);
+            int rT = solve(s, k + 1, j, 1, map);
+            int rF = solve(s, k + 1, j, 0, map);
+
+            if (s[k] == '&') {
+                if (isTrue == 1) {
+                    ways += lT * rT;
+                } else {
+                    ways += lF * rT + lT * rF + lF * rF;
+                }
+            } else if (s[k] == '|') {
+                if (isTrue == 1) {
+                    ways += lT * rT + lF * rT + lT * rF;
+                } else {
+                    ways += lF * rF;
+                }
+            } else if (s[k] == '^') {
+                if (isTrue == 1) {
+                    ways += lT * rF + lF * rT;
+                } else {
+                    ways += lT * rT + lF * rF;
+                }
+            }
+
+            ways %= 1003;
+        }
+
+        int ans = (int) ways;
+
+        map.put(key, ans);
+        return ans;
+    }
+}
